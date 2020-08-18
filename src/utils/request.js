@@ -1,5 +1,6 @@
 import axios from "axios"
 const service = axios.create({
+  //自动根据环境变量切换本地和线上 api。
   baseURL:process.env.VUE_APP_BASE_API,
   timeout:5000
 })
