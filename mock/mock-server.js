@@ -13,7 +13,25 @@ const mockDir = path.join(process.cwd(),'mock')
 function registerRoutes(app){
   let mockLastIndex
   const {mocks} = require('./index.js')
-  
+  const mocksForServer = mocks.map(route=>{
+    return responseFake(route.url,route.type,route.response)
+  })
+  for (const mock of mocksForServer){
+    app[mock.type](mock.url,mock.response)
+    mockLastIndex = app._router.stack.length
+  }
+  const mockRoutesLength = Object.keys(mocksForServer).length
+  return {
+    mockRoutesLength:mockRoutesLength,
+    mockStartIndex:mockLastIndex-mockRoutesLength
+  }
+}
 
+function unregisterRoutes(){
+  Object.keys(require.cache).forEach(i=>{
+    if(i.includes(mockDir)){
+      delete require.cache[require.resolve(i)]
+    }
+  })
 }
 

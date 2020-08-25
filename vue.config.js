@@ -6,7 +6,7 @@ module.exports = {
     publicPath:"./",
     devServer:{
       open:true,
-      before:require('./mock/mock-serve.js')
+      before:require('./mock/mock-server.js')
     },
     configureWebpack:{
         resolve:{
