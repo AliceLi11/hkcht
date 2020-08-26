@@ -10,6 +10,7 @@ const Mock = require('mockjs')
 //process.cwd()会返回Node.js进程的当前工作目录
 const mockDir = path.join(process.cwd(),'mock')
 
+/*通过 chokidar 来观察 mock 文件夹内容的变化。在发生变化时会清除之前注册的mock-api接口，重新动态挂载新的接口，从而支持热更新。*/
 function registerRoutes(app){
   let mockLastIndex
   const {mocks} = require('./index.js')
@@ -35,3 +36,14 @@ function unregisterRoutes(){
   })
 }
 
+//for mock server
+const responseFake = (url,type,respond)=>{
+  return {
+    url:new RegExp(`${process.env.VUE_APP_BASE_API}${url}`),
+    type:type||'get',
+    response(req,res){
+      console.log('request invoke:'+req.path)
+      res.json(Mock.mock(respond instanceof Function ? respond(req,res):respond))
+    }
+  }
+}
