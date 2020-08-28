@@ -27,7 +27,7 @@ const actions = {
         reject(error)
       })
     })
-  }
+  },
 }
 export default{
   namespaced:true,

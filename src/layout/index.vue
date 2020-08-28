@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <sidebar/>
+  <div class="app-wrapper">
+    <sidebar class="sidebar-container"/>
     <div class="main-container">
       <div>
         <navbar/>
@@ -25,5 +25,9 @@ export default {
 <style lang="scss" scoped>
   @import "styles/variables.scss";
 
-
+  .app-wrapper{
+    position: relative;
+    width:100%;
+    height: 100%;
+  }
 </style>

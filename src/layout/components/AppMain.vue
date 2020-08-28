@@ -1,5 +1,7 @@
 <template>
-  <div>AppMain</div>
+  <section class="app-main">
+    appmain
+  </section>
 </template>
 
 <script>
@@ -8,6 +10,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .app-main{
+    width:100%;
+    position: relative;
+    min-height:calc(100vh - 50px);
+  }
 </style>
