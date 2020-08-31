@@ -1,5 +1,6 @@
 <template>
   <div class="sidebar-logo-container">
+    <transition name="sidebarLogoFade"></transition>
     <router-link to="/" class="sidebar-logo-link">
       <img :src="logo" alt="" class="sidebar-logo">
       <h1 class="sidebar-title">{{title}}</h1>
@@ -20,6 +21,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .sidebarLogoFade-enter-active{
+    transition: opacity 1.5s;
+  }
+  .sidebarLogoFade-enter,
+  .sidebarLogoFade-leave-to{
+    opacity: 0;
+  }
+  
   .sidebar-logo-container{
     position: relative;
     width:100%;

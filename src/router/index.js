@@ -28,7 +28,7 @@ export const constantRoutes = [
                 },
             }
         ]
-    },
+    },                                                                                                                          
 
     {
         path:"/example",

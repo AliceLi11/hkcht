@@ -1,48 +1,45 @@
 <template>
   <component :is="type" v-bind="linkProps(to)">
-    <slot/>
+    <slot />
   </component>
 </template>
 
 <script>
 // 不明白为什么v-bind="一个方法"
 //判断路径是否是https?:|mailto:|tel: 开头的
-import {isExternal} from "@/utils/validate"
+import { isExternal } from '@/utils/validate'
+
 export default {
-  props:{
-    to:{
-      type:String,
-      required:true
+  props: {
+    to: {
+      type: String,
+      required: true
     }
   },
-  computed:{
-    isExternal(){
+  computed: {
+    isExternal() {
       return isExternal(this.to)
     },
-    type(){
-      if(this.isExternal){
+    type() {
+      if (this.isExternal) {
         return 'a'
       }
       return 'router-link'
     }
   },
-  methods:{
-    linkProps(to){
-      if(this.isExternal){
+  methods: {
+    linkProps(to) {
+      if (this.isExternal) {
         return {
-          href:to,
-          target:'_blank',
-          rel:'noopener'
+          href: to,
+          target: '_blank',
+          rel: 'noopener'
         }
       }
-      return{
-        to:to
+      return {
+        to: to
       }
     }
   }
 }
 </script>
-
-<style>
-
-</style>

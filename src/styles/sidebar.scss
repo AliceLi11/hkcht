@@ -19,6 +19,14 @@
     .scrollbar-wrapper{
       overflow-x: hidden !important;
     }
+
+    //menu hover
+    .submenu-title-noDropdown{
+      &:hover{
+        background-color: $menuHover !important;
+      }
+    }
+
   }
 
   .main-container{
